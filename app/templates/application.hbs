@@ -11,21 +11,24 @@
     </div>
     <div class="collapse navbar-collapse navbar-collapse-1">
         <ul class="nav navbar-nav navbar-primary">
-            <li>
-                {{#link-to "index"}}Everyone{{/link-to}}
-            </li>
-            <li>
-                {{#link-to "sandy"}}Sandy{{/link-to}}
-            </li>
-            <li>
-                {{#link-to "paul"}}Paul{{/link-to}}
-            </li>
-            <li>
-                {{#link-to "julie"}}Julie{{/link-to}}
-            </li>
+            {{#active-link activeClass="active"}} 
+                {{#link-to "index"}}Everyone{{/link-to}} 
+            {{/active-link}} 
+
+            {{#active-link activeClass="active"}} 
+                {{#link-to "sandy"}}Sandy{{/link-to}} 
+            {{/active-link}} 
+
+            {{#active-link activeClass="active"}} 
+                {{#link-to "paul"}}Paul{{/link-to}} 
+            {{/active-link}} 
+            
+            {{#active-link activeClass="active"}} 
+                {{#link-to "julie"}}Julie{{/link-to}} 
+            {{/active-link}}
         </ul>
     </div>
 </nav>
 <div class="container">
-{{outlet}}
+    {{outlet}}
 </div>
