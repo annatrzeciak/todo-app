@@ -5,6 +5,14 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': [
+          'list', 
+          'filter'
+         ]
+        }
+      }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -20,11 +28,13 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  app.import('bower_components/jquery/dist/jquery.min.js');
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
   app.import('bower_components/patternfly/dist/js/patternfly.min.js');
   app.import('bower_components/patternfly/dist/css/patternfly.min.css');
   app.import('bower_components/patternfly/dist/css/patternfly-additions.min.css');
+
 
   return app.toTree();
 };
