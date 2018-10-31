@@ -17,18 +17,27 @@ export default Component.extend({
       if (element.person == this.person && this.person != "") {
         this.allTasks++;
 
-        if (element.complete) {
+        if (element.completed) {
           this.completeTasks++;
         }
       } else if (this.person == "") {
         this.allTasks++;
 
-        if (element.complete) {
+        if (element.completed) {
           this.completeTasks++;
         }
       }
 
       this.newTasks = this.allTasks - this.completeTasks;
     });
-  }
+},
+actions: {
+    setCompleteTask(task){
+        this.tasks_service.setComplete(task);
+        // task.set('completed', true);
+        // // task.completed = true
+    }
+
+}
+
 });

@@ -1,44 +1,49 @@
 import Service from "@ember/service";
 
 export default Service.extend({
+  data : Array(
+    {
+      id: 1,
+      person: "Julie",
+      completed: false,
+      content: "Take out the garbage"
+    },
+    {
+      id: 2,
+      person: "Julie",
+      completed: true,
+      content: "Buy bread"
+    },
+    {
+      id: 3,
+      person: "Paul",
+      completed: true,
+      content: "Call to mother"
+    },
+    {
+      id: 4,
+      person: "Paul",
+      completed: true,
+      content: "Pay the gas bill"
+    },
+    {
+      id: 5,
+      person: "Sandy",
+      completed: false,
+      content: "Write CV"
+    },
+    {
+      id: 6,
+      person: "Sandy",
+      completed: false,
+      content: "Buy new coat"
+    }
+  ),
   getData() {
-    return [
-      {
-        id: 1,
-        person: "Julie",
-        complete: false,
-        content: "Take out the garbage"
-      },
-      {
-        id: 2,
-        person: "Julie",
-        complete: true,
-        content: "Buy bread"
-      },
-      {
-        id: 3,
-        person: "Paul",
-        complete: true,
-        content: "Call to mother"
-      },
-      {
-        id: 4,
-        person: "Paul",
-        complete: true,
-        content: "Pay the gas bill"
-      },
-      {
-        id: 5,
-        person: "Sandy",
-        complete: false,
-        content: "Write CV"
-      },
-      {
-        id: 6,
-        person: "Sandy",
-        complete: false,
-        content: "Buy new coat"
-      }
-    ];
+    return this.data; 
+  },
+
+  setComplete(task){
+    task.set('completed', true);
   }
 });

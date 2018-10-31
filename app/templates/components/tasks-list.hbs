@@ -18,11 +18,11 @@
                 {{/unless}}
                 <td>{{task.content}}</td>
                 <td>
-                    {{#if task.complete}} Complete {{else}} New {{/if}}
+                    {{#if task.completed}} Complete {{else}} New {{/if}}
                 </td>
                 <td class="table-view-pf-select">
-                    {{#unless task.complete }}
-                    <input type="checkbox"> 
+                    {{#unless task.completed }}
+                    <input type="checkbox" {{action "setCompleteTask" task}}> 
                     {{/unless }}
                 </td>
             </tr>
