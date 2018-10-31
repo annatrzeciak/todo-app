@@ -10,7 +10,6 @@ Router.map(function() {
   this.route('sandy');
   this.route('paul');
   this.route('julie');
-  this.route('tasks');
 });
 
 export default Router;

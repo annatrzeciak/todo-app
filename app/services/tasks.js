@@ -1,7 +1,7 @@
-import Route from "@ember/routing/route";
+import Service from "@ember/service";
 
-export default Route.extend({
-  model() {
+export default Service.extend({
+  getData() {
     return [
       {
         id: 1,
