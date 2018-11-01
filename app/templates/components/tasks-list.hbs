@@ -1,34 +1,29 @@
-    <table class="table table-striped table-bordered table-hover no-footer">
-        <thead>
-            <tr>
-                 {{#unless person}}
-                <th class="sorting">Who</th>
-                 {{/unless}}
-                <th>Content</th>
-                <th>State</th>
-                <th>Option</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each tasks as |task|}}
-            {{#if (or (eq task.person person)(eq person '') )}}
-            <tr>
-                {{#unless person}}
-                <td>{{task.person}}</td>
-                {{/unless}}
-                <td>{{task.content}}</td>
-                <td>
-                    {{#if task.completed}} Complete {{else}} New {{/if}}
-                </td>
-                <td class="table-view-pf-select">
-                    {{#unless task.completed }}
-                    <input type="checkbox" {{action "setCompleteTask" task}}> 
-                    {{/unless }}
-                </td>
-            </tr>
-            {{/if}}
-            {{/each}}
-        </tbody>
-    </table>
-    All: {{allTasks}} Complete:{{completeTasks}} New: {{newTasks}}
-    {{yield}}
+<table class="table table-striped table-bordered table-hover no-footer">
+    <thead>
+        <tr>
+            {{#unless person}}
+            <th class="sorting">Who</th>
+            {{/unless}}
+            <th>Content</th>
+            <th>State</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each tasks as |task|}} {{#if (or (eq task.person person)(eq person '') )}}
+        <tr>
+            {{#unless person}}
+            <td>{{task.person}}</td>
+            {{/unless}}
+            <td>{{task.content}}</td>
+            <td>
+                {{#if task.completed}} Complete {{else}} New {{/if}}
+            </td>
+            <td class="table-view-pf-select">
+                {{input type="checkbox" checked=task.completed change=(action "setCompleteTask" task)}}
+            </td>
+        </tr>
+        {{/if}} {{/each}}
+    </tbody>
+</table>
+All: {{allTasks}} Complete:{{completeTasks}} New: {{newTasks}} {{yield}}

@@ -13,34 +13,44 @@ export default Component.extend({
     this._super(...arguments);
     this.set("tasks", this.tasks_service.findAll());
 
+    this.updateNumbers();
+  },
+
+  updateNumbers() {
+    var allTasks = 0;
+    var completeTasks = 0;
+
     this.tasks.forEach(element => {
       if (element.person == this.person && this.person != "") {
-        this.allTasks++;
+        allTasks++;
 
         if (element.completed) {
-          this.completeTasks++;
+          completeTasks++;
         }
       } else if (this.person == "") {
-        this.allTasks++;
+        allTasks++;
 
         if (element.completed) {
-          this.completeTasks++;
+          completeTasks++;
         }
       }
+      this.set("allTasks", allTasks);
+      this.set("completeTasks", completeTasks);
+      this.set("newTasks", allTasks - completeTasks);
 
-      this.newTasks = this.allTasks - this.completeTasks;
     });
   },
   actions: {
     setCompleteTask(task) {
       var index = this.tasks.indexOf(task);
 
-      task.set("completed", true);
+      task.set("completed", !task.get("completed"));
 
       this.set(`task[${index}]`, task);
 
       this.tasks_service.persist(this.get("tasks"));
       this.tasks_service.findAll();
+      this.updateNumbers();
     }
   }
 });
