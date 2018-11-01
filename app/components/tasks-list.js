@@ -36,7 +36,7 @@ actions: {
        
         task.set('completed', true);
         
-       this.service.persist();
+       this.tasks_service.persist();
     }
 
 }
