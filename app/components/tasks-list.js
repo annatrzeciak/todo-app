@@ -11,7 +11,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set("tasks", this.tasks_service.getData());
+    this.set("tasks", this.tasks_service.findAll());
 
     this.tasks.forEach(element => {
       if (element.person == this.person && this.person != "") {
@@ -33,9 +33,10 @@ export default Component.extend({
 },
 actions: {
     setCompleteTask(task){
-        this.tasks_service.setComplete(task);
-        // task.set('completed', true);
-        // // task.completed = true
+       
+        task.set('completed', true);
+        
+       this.service.persist();
     }
 
 }

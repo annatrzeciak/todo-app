@@ -1,34 +1,4 @@
-<nav class="navbar navbar-default navbar-pf" role="navigation">
-
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        {{#link-to "index" class="navbar-brand"}}{{fa-icon 'list'}} To do app{{/link-to}}
-    </div>
-    <div class="collapse navbar-collapse navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-primary">
-            {{#active-link activeClass="active"}} 
-                {{#link-to "index"}}Everyone{{/link-to}} 
-            {{/active-link}} 
-
-            {{#active-link activeClass="active"}} 
-                {{#link-to "sandy"}}Sandy{{/link-to}} 
-            {{/active-link}} 
-
-            {{#active-link activeClass="active"}} 
-                {{#link-to "paul"}}Paul{{/link-to}} 
-            {{/active-link}} 
-
-            {{#active-link activeClass="active"}} 
-                {{#link-to "julie"}}Julie{{/link-to}} 
-            {{/active-link}}
-        </ul>
-    </div>
-</nav>
+{{nav-bar}}
 <div class="container">
     {{outlet}}
 </div>
