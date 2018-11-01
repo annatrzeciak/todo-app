@@ -30,15 +30,17 @@ export default Component.extend({
 
       this.newTasks = this.allTasks - this.completeTasks;
     });
-},
-actions: {
-    setCompleteTask(task){
-       
-        task.set('completed', true);
-        
-       this.tasks_service.persist();
+  },
+  actions: {
+    setCompleteTask(task) {
+      var index = this.tasks.indexOf(task);
+
+      task.set("completed", true);
+
+      this.set(`task[${index}]`, task);
+
+      this.tasks_service.persist(this.get("tasks"));
+      this.tasks_service.findAll();
     }
-
-}
-
+  }
 });

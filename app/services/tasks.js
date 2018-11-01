@@ -10,7 +10,8 @@ export default Service.extend({
   },
   
 
- 	persist() {
+ 	persist(newData) {
+     this.set('data',newData);
 		window.localStorage.setItem('todos', JSON.stringify(this.data));
 	}
 });
