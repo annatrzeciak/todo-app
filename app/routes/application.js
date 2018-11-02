@@ -15,7 +15,7 @@ export default Route.extend({
    */
   model() {
     // Retrieve task objects and push then to ember-data store
-    return this.tasks.findAll().map(taskData => 
-      this.store.createRecord("task", taskData));
+    return this.tasks.findAll()
+      .map(taskData => this.store.createRecord('task', taskData));
   }
 });

@@ -2,6 +2,6 @@ import Route from "@ember/routing/route";
 
 export default Route.extend({
   model() {
-    return this.store.peekAll("task").filterBy("person", "Paul");
+    return this.store.peekAll('task').filterBy('person', 'Paul');
   }
 });

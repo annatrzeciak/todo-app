@@ -81,7 +81,7 @@ export default Component.extend({
           completed: false,
           content: this.get('addTaskInput').trim()
         });
-        e.target.value= "";
+        this.set('addTaskInput', '');
 
         // task.save();
         this.set(
