@@ -4,44 +4,40 @@ import EmberObject from "@ember/object";
 export default Service.extend({
   data: null,
 
-  defaultData: JSON.stringify([
-    {
-      id: 1,
-      person: "Julie",
-      completed: false,
-      content: "Take out the garbage"
-    },
-    {
-      id: 2,
-      person: "Julie",
-      completed: true,
-      content: "Buy bread"
-    },
-    {
-      id: 3,
-      person: "Paul",
-      completed: true,
-      content: "Call to mother"
-    },
-    {
-      id: 4,
-      person: "Paul",
-      completed: true,
-      content: "Pay the gas bill"
-    },
-    {
-      id: 5,
-      person: "Sandy",
-      completed: false,
-      content: "Write CV"
-    },
-    {
-      id: 6,
-      person: "Sandy",
-      completed: false,
-      content: "Buy new coat"
-    }
-  ]),
+  defaultData: JSON.stringify(
+    Array(
+      {
+        person: "Julie",
+        completed: false,
+        content: "Take out the garbage"
+      },
+      {
+        person: "Julie",
+        completed: true,
+        content: "Buy bread"
+      },
+      {
+        person: "Paul",
+        completed: true,
+        content: "Call to mother"
+      },
+      {
+        person: "Paul",
+        completed: true,
+        content: "Pay the gas bill"
+      },
+      {
+        person: "Sandy",
+        completed: false,
+        content: "Write CV"
+      },
+      {
+        person: "Sandy",
+        completed: false,
+        content: "Buy new coat"
+      }
+    )
+  ),
 
   findAll() {
     return (
@@ -53,8 +49,7 @@ export default Service.extend({
     );
   },
 
-  persist(newData) {
-    this.set("data", newData);
+  persist() {
     window.localStorage.setItem("todos", JSON.stringify(this.data));
   }
 });

@@ -1,4 +1,9 @@
+{{#if person}}
+<input type="text"  onkeydown={{action 'addNewTask'}} placeholder="What needs to be done?">
+{{/if}}
+{{#if tasks}}
 <table class="table table-striped table-bordered table-hover no-footer">
+    
     <thead>
         <tr>
             {{#unless person}}
@@ -10,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        {{#each tasks as |task|}} {{#if (or (eq task.person person)(eq person '') )}}
+        {{#each tasks as |task|}}
         <tr>
             {{#unless person}}
             <td>{{task.person}}</td>
@@ -20,10 +25,13 @@
                 {{#if task.completed}} Complete {{else}} New {{/if}}
             </td>
             <td class="table-view-pf-select">
-                {{input type="checkbox" checked=task.completed change=(action "setCompleteTask" task)}}
+                {{input type="checkbox" checked=task.completed change=(action "setCompleteTask" task) }}
             </td>
         </tr>
-        {{/if}} {{/each}}
+       {{/each}}
     </tbody>
 </table>
 All: {{allTasks}} Complete:{{completeTasks}} New: {{newTasks}} {{yield}}
+{{else}}
+<h4>No tasks</h4>
+{{/if}}
