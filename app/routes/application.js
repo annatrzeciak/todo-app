@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 
-export default Route.extend({
+export default Route.extend({ 
   // store: service(), store service is injected by default with ember-data
   tasks: service(),
 
@@ -17,5 +17,5 @@ export default Route.extend({
     // Retrieve task objects and push then to ember-data store
     return this.tasks.findAll()
       .map(taskData => this.store.createRecord('task', taskData));
-  }
+  }  
 });
