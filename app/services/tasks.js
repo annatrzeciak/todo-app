@@ -1,9 +1,15 @@
 import Service from "@ember/service";
 import EmberObject from "@ember/object";
+import Ember from "ember";
+
 
 export default Service.extend({
+
+  store: Ember.inject.service(),
+  
   data: null,
 
+  //To delete, in the final version - defaultData = '[]'
   defaultData: JSON.stringify(
     Array(
       {
@@ -50,6 +56,7 @@ export default Service.extend({
   },
 
   persist() {
-    window.localStorage.setItem("todos", JSON.stringify(this.data));
+    this.set('data',this.store.peekAll("task")._objects);
+    window.localStorage.setItem("todos", JSON.stringify(this.get('data')));
   }
 });
