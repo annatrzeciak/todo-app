@@ -6,7 +6,7 @@
 {{/if}}
 
 <form>
-    {{input type='text' name="searchText" placeholder='Filter tasks' valueBinding='searchContent' key-up=(action 'updateList')}}
+    {{input type='text' name="searchText" placeholder='Filter tasks' value=searchContent}}
     {{#unless person}}
     <select name="person" onchange={{action 'selectPerson' value="target.value" }}>
         <option value="">Who: Everyone</option>

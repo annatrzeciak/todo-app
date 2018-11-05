@@ -8,7 +8,6 @@ export default Component.extend({
   searchPerson: "",
   searchState: "",
 
-  filteredTasks: null,
   person: "",
   tasks: null,
   store: Ember.inject.service(),
@@ -27,11 +26,8 @@ export default Component.extend({
     return tasks.filterBy("completed", false).length;
   }),
 
-  init(){
-    this._super(...arguments);
-    this.set('filteredTasks', this.tasks);
-  },
-  updateTaskList() {
+  // Keeps final list of filtered tasks. Re-computes on changes to filters or contents of each task
+  filteredTasks: computed("searchPerson", "searchState", "searchContent", "tasks.@each.content", function() {
     var filtered = this.get("tasks");
     if (this.get("searchPerson") != "") {
       filtered = filtered.filterBy("person", this.get("searchPerson"));
@@ -52,25 +48,19 @@ export default Component.extend({
         );
       }
 
-    this.set("filteredTasks", filtered);
-  },
+    return filtered;
+  }),
 
   actions: {
     selectPerson(person) {
       this.set("searchPerson", person);
-      this.updateTaskList();
     },
     selectState(state) {
         this.set("searchState", state);
-        this.updateTaskList();
-      },
-    updateList() {
-      this.updateTaskList();
     },
   
     setCompleteTask(task) {
       task.set("completed", !task.get("completed"));
-      this.updateTaskList();
     },
     addNewTask(e) {
       this.set('addTaskInput', e.target.value.trim());
@@ -89,7 +79,6 @@ export default Component.extend({
           this.store.peekAll("task").filterBy("person", this.get("person"))
         );
       }
-      this.updateTaskList();
     },
   }
 });
