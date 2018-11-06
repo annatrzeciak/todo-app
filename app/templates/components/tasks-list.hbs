@@ -1,58 +1,90 @@
-<h1>To do list {{#if person}}- {{person}}{{/if}} </h1>
-{{#if person}}
-<div>
-<input type="text" onkeydown={{action 'addNewTask'}} value={{addTaskInput}} placeholder="What needs to be done?" name="newTask"> 
+<div class="card-pf-heading">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="card-pf-title">To do list {{#if person}}- {{person}}{{/if}} </h1>
+        </div>
+    </div>
 </div>
-{{/if}}
+<div class="card-pf-body">
+    <div class="row toolbar-pf table-view-pf-toolbar">
+        {{#if person}}
+        <div class="col-xs-12">
+            <div class="toolbar-pf-actions">
+                <input type="text" class="form-control input-lg" placeholder="What needs to be done?" onkeydown={{action 'addNewTask'}} value={{addTaskInput}}>
+            </div>
+        </div>
+        {{/if}}
+        <div class="col-xs-12">
+            <div class="toolbar-pf-actions">
+                <div class="form-group toolbar-pf-filter">
+                    {{input type="text" class="form-control" name="searchText" placeholder='Filter tasks' value=searchContent}}
+                </div>
+                {{#unless person}}
+                <div class="form-group ">
+                    <select class="form-control btn btn-default" name="person" onchange={{action 'selectPerson' value="target.value" }}>
+                        <option value="">Who: Everyone</option>
+                        <option value="Sandy">Who: Sandy</option>
+                        <option value="Paul">Who: Paul</option>
+                        <option value="Julie">Who: Julie</option>
+                    </select>
+                </div>
+                {{/unless}}
+                <div class="form-group ">
+                    <select class="form-control btn btn-default" name="state" onchange={{action 'selectState' value="target.value" }}>
+                        <option value="">Type: All tasks</option>
+                        <option value=true>Type: Completed tasks</option>
+                        <option value=false>Type: New tasks</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if filteredTasks}}
+    <table class="table table-striped table-bordered table-hover no-footer">
 
-<form>
-    {{input type='text' name="searchText" placeholder='Filter tasks' value=searchContent}}
-    {{#unless person}}
-    <select name="person" onchange={{action 'selectPerson' value="target.value" }}>
-        <option value="">Who: Everyone</option>
-        <option value="Sandy">Who: Sandy</option>
-        <option value="Paul">Who: Paul</option>
-        <option value="Julie">Who: Julie</option>
-    </select>
-    {{/unless}}
-    <select name="state" onchange={{action 'selectState' value="target.value" }}>
-        <option value="">Type: All tasks</option>
-        <option value=true>Type: Completed tasks</option>
-        <option value=false>Type: New tasks</option>
-    </select>
-
-</form>
-{{#if filteredTasks}}
-<table class="table table-striped table-bordered table-hover no-footer">
-
-    <thead>
-        <tr>
-            {{#unless person}}
-            <th class="sorting">Who</th>
-            {{/unless}}
-            <th>Content</th>
-            <th>State</th>
-            <th>Option</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each filteredTasks as |task|}}
-        <tr>
-            {{#unless person}}
-            <td>{{task.person}}</td>
-            {{/unless}}
-            <td>{{task.content}}</td>
-            <td>
-                {{#if task.completed}} Completed {{else}} New {{/if}}
-            </td>
-            <td class="table-view-pf-select">
-                <input type="checkbox" checked={{task.completed}} onchange={{action 'setCompleteTask' task}}>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-All: {{allTasks}} Complete:{{completeTasks}} New: {{newTasks}} {{yield}} 
-{{else}}
-<h4>No tasks</h4>
-{{/if}} 
+        <thead>
+            <tr>
+                {{#unless person}}
+                <th class="sorting">Who</th>
+                {{/unless}}
+                <th>Content</th>
+                <th>State</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each filteredTasks as |task|}}
+            <tr>
+                {{#unless person}}
+                <td>{{task.person}}</td>
+                {{/unless}}
+                <td>{{task.content}}</td>
+                <td>
+                    {{#if task.completed}} Completed {{else}} New {{/if}}
+                </td>
+                <td class="table-view-pf-select">
+                    <input type="checkbox" checked={{task.completed}} onchange={{action 'setCompleteTask' task}}>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="progress-description">
+                <strong>To do {{newTasks}} tasks</strong>
+            </div>
+            <div class="progress progress-label-top-right">
+                <div class="progress-bar" role="progressbar" aria-valuenow={{completeTasks}} aria-valuemin="0" aria-valuemax={{allTasks}}
+                    style="width: calc({{completeTasks}}/{{allTasks}}*100%)">
+                    <span>Complete {{completeTasks}} of {{allTasks}} tasks</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="col-xs-12">
+        <h4>No tasks</h4>
+    </div>
+    {{/if}}
+</div>
