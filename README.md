@@ -1,7 +1,15 @@
 # todo-app
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+0. Ember.js and PatternFly 3 UI kit
+1. Data of tasks should be stored in browser. There is no need to store individual people, only the tasks.
+2. 4 subpages: Index, Sandy, Paul, Julie
+3. Titlebar changes according to current page
+4. Address bar: / (landing page), /sandy, /paul, /julie
+5. Navigation: Either patternfly horizontal nav or tabs
+6. Filter bar: Search by name, select name, select task
+7. Simple table of tasks with option to complete new tasks
+8. Summary of tasks numbers underneath the table
+9. Open task: Be able to add new task for individual person
 
 ## Prerequisites
 
@@ -22,31 +30,6 @@ You will need the following things properly installed on your computer.
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
